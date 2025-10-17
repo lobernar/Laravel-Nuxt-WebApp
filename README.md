@@ -15,14 +15,14 @@ Here is a non-exhaustive list of everything I am learning during this project:
 
 ## How to run
 
-1. Start the backend from root folder:
-    `php artisan serve`
+1. Start the backend from root folder\
+    `php artisan serve`\
     The API will run at http://localhost:8000
 
-2. Navigate to client/ folder
-    `npm install`
-    `ng serve`
+2. Navigate to client/ folder\
+    `npm install`\
+    `ng serve`\
     Visit http://localhost:4200
 
-3. Access the application
+3. Access the application\
     Once all services are running, open your browser and visit: `http://localhost:4200`
