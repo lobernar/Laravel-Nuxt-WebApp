@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const config = useRuntimeConfig();
+console.log('API Base URL: ', config.public.apiBase);
+
 const regname = ref('');
 const regemail = ref('');
 const regpassword = ref('');
@@ -8,7 +11,8 @@ const loginname = ref('');
 const loginpassword = ref('');
 
 async function register() {
-  const res = await $fetch('/submit', {
+  const res = await $fetch('/register', {
+    baseURL: config.public.apiBase,
     method: 'POST',
     body: {
         name: regname.value,
@@ -20,13 +24,15 @@ async function register() {
 
 async function login() {
     console.log('Logging in as ', loginname.value);
-  const res = await $fetch('/login', {
+    const res = await $fetch('login', {
+    baseURL: config.public.apiBase,
     method: 'POST',
     body: {
-        name: regname.value,
-        password: regpassword.value,
+        loginname: loginname.value,
+        loginpassword: loginpassword.value,
     },
-  })
+    })
+    console.log('Login response: ', res);
 }
 </script>
 
