@@ -1,3 +1,8 @@
 <template>
-  <NuxtPage />
+  <Html data-theme="halloween">
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+  </Html>
+
 </template>
