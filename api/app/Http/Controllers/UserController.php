@@ -23,10 +23,13 @@ class UserController extends Controller
             "name" => $data["loginname"], 
             "password" => $data["loginpassword"]
             ])) {
+                $user = User::where('name', $request['loginname'])->firstOrFail();
+
+                $token = $user->createToken('auth_token')->plainTextToken;
                 return response()->json([
-                'message' => 'Login successfull',
-                'data' => $request->all(),
-                ]);
+                        'access_token' => $token,
+                        'token_type' => 'Bearer',
+                    ]);
         }
 
         return response()->json([
@@ -43,17 +46,27 @@ class UserController extends Controller
     public function register(Request $request){
         // Validate incoming data
         $data = $request->validate([
-            "email"=> ["required", "email", Rule::unique("users", "email")],
-            "password"=> "required",
-            "name" => ["required", Rule::unique("users", "name")]
+            "regemail"=> ["required", "email", Rule::unique("users", "email")],
+            "regpassword"=> "required",
+            "regname" => ["required", Rule::unique("users", "name")]
         ]);
 
         // Hash password
-        $data["password"] = bcrypt($data["password"]);
+        $data["regpassword"] = bcrypt($data["regpassword"]);
 
         // Store new user in database
-        $user = User::create($data);
-        auth()->guard()->login($user);
-        return redirect("/");
+        $user = User::create([
+            'name' => $data["regname"],
+            'email' => $data["regemail"],
+            'password' => $data["regpassword"]
+        ]);
+        $token = $user->createToken('MyToken')->plainTextToken;
+        //auth()->guard()->login($user);
+        return response()->json([
+            'success' => true,
+            'message' => 'User registered successfully.',
+            'token' => $token,
+            'user' => $user,
+        ]);
     }
 }

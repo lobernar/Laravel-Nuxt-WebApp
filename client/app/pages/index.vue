@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 
 const config = useRuntimeConfig();
-console.log('API Base URL: ', config.public.apiBase);
 
 const regname = ref('');
 const regemail = ref('');
@@ -15,16 +14,15 @@ async function register() {
     baseURL: config.public.apiBase,
     method: 'POST',
     body: {
-        name: regname.value,
-        email: regemail.value,
-        password: regpassword.value,
+        regname: regname.value,
+        regemail: regemail.value,
+        regpassword: regpassword.value,
     },
   })
 }
 
 async function login() {
-    console.log('Logging in as ', loginname.value);
-    const res = await $fetch('login', {
+    const res = await $fetch('/login', {
     baseURL: config.public.apiBase,
     method: 'POST',
     body: {
