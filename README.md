@@ -52,6 +52,8 @@ The client will run at: http://localhost:3000
 ### 3. Run the application
 Once both backend and frontend are running, open your browser and visit: http://localhost:3000
 
+---
+
 ## Authentication Flow
 
 1. Users register or log in via the Nuxt frontend.
@@ -59,6 +61,8 @@ Once both backend and frontend are running, open your browser and visit: http://
 2. The Laravel Sanctum API issues secure cookies for authenticated sessions.
 
 3. The frontend communicates with the API using RESTful requests for protected resources.
+
+---
 
 ## Notes
 
