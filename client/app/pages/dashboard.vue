@@ -1,12 +1,24 @@
 <script lang="ts" setup>
 
-// Use Nuxt's runtime config to read API base URL
-const config = useRuntimeConfig();
 const { logout } = useSanctumAuth();
+
+// This middleware checks if the user is authenticated. If not, it will redirect 
+// a user to the page specified in the redirect.onAuthOnly option (default is /login).
+definePageMeta({
+  middleware: ['sanctum:auth']
+})
 
 async function handleLogout(){
     await logout();
 }
+
+interface MyUser {
+    id: number;
+    name: string;
+    email: string;
+}
+
+const user = useSanctumUser<MyUser>();
 
 </script>
 
@@ -38,9 +50,10 @@ async function handleLogout(){
       <!-- Navbar -->
       <div class="navbar bg-base-100 shadow-sm px-6">
         <div class="flex-1">
-          <h1 class="text-xl font-semibold">Welcome</h1>
+          <h1 class="text-xl font-semibold">Welcome {{ user?.name }}</h1>
         </div>
         <div class="flex-none">
+          <NuxtLink to="user/info" class="link link-hover m-5"> User information </NuxtLink>
           <button class="btn btn-error btn-sm" @click="handleLogout">Logout</button>
         </div>
       </div>

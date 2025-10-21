@@ -5,11 +5,11 @@ const { login, user } = useSanctumAuth();
 const client = useSanctumClient();
 const config = useRuntimeConfig();
 
-const mode = ref<'login' | 'register'>('login')
 definePageMeta({
     middleware: 'sanctum:guest'
 })
 
+const mode = ref<'login' | 'register'>('login')
 const regname = ref('');
 const regemail = ref('');
 const regpassword = ref('');
