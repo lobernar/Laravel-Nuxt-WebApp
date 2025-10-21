@@ -4,5 +4,4 @@
         <NuxtPage />
       </NuxtLayout>
   </Html>
-
 </template>

@@ -16,6 +16,7 @@ interface MyUser {
     id: number;
     name: string;
     email: string;
+    role: string;
 }
 
 const user = useSanctumUser<MyUser>();
@@ -53,7 +54,10 @@ const user = useSanctumUser<MyUser>();
           <h1 class="text-xl font-semibold">Welcome {{ user?.name }}</h1>
         </div>
         <div class="flex-none">
-          <NuxtLink to="user/info" class="link link-hover m-5"> User information </NuxtLink>
+          <NuxtLink to="/user/info" class="link link-hover m-5"> User information </NuxtLink>
+          <NuxtLink v-if="user?.role === 'admin'"
+            to="/adminDashboard"
+            class="link link-hover text-primary font-medium mr-6">Admin Dashboard</NuxtLink>
           <button class="btn btn-error btn-sm" @click="handleLogout">Logout</button>
         </div>
       </div>

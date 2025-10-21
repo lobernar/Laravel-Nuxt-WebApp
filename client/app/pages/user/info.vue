@@ -14,7 +14,7 @@ interface MyUser {
     name: string;
     email: string;
     avatar?: string;
-    role?: string;
+    role: string;
     created_at?: string;
 }
 const user = useSanctumUser<MyUser>();

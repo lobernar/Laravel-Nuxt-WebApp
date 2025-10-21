@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   },
   css: ["./app/tailwind.css"],
 
-  modules: ["nuxt-auth-sanctum"],
+  modules: ["nuxt-auth-sanctum", "nuxt-permissions"],
   sanctum: {
     baseUrl: 'http://localhost:8000', // Laravel API
     endpoints: {
