@@ -41,13 +41,18 @@ onMounted(async () => {
     // Backend returns a plain JSON array: User::all()
     const res = await client('/api/admin/users', { method: 'GET' });
 
+    let fetchedUsers: MyUser[] = []
+
     if (Array.isArray(res)) {
-      users.value = res as MyUser[];
+      fetchedUsers = res as MyUser[];
     } else {
       // If the client wraps the body, try to read `.data`, otherwise set empty
       console.warn('Unexpected response shape from /api/admin/users, expected array', res);
-      users.value = (res && (res as any).data && Array.isArray((res as any).data)) ? (res as any).data : [];
+      fetchedUsers = (res && (res as any).data && Array.isArray((res as any).data)) ? (res as any).data : [];
     }
+    // Sort ascending by ID
+    users.value = fetchedUsers.sort((a, b) => a.id - b.id)
+
   } catch (err: any) {
     console.error("Error fetching users:", err);
     fetchError.value = err?.message || String(err);
@@ -60,6 +65,11 @@ onMounted(async () => {
 
 <template>
   <div class="p-6">
+    <div class="flex items-center justify-between mt-8">
+      <NuxtLink to="/dashboard" class="link link-hover text-primary">
+          ← Back
+      </NuxtLink>
+    </div>
     <h1 class="text-3xl font-bold text-center mt-10">Admin Dashboard</h1>
 
     <ul v-if="users" class="max-w-4xl mx-auto mt-6 space-y-4">
