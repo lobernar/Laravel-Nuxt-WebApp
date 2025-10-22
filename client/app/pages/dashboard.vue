@@ -31,9 +31,6 @@ const user = useSanctumUser<MyUser>();
         <h2 class="text-xl font-bold">Smart Factory</h2>
       </div>
       <nav class="mt-4 space-y-2">
-        <NuxtLink to="/dashboard" class="btn btn-ghost w-full justify-start">
-          Dashboard
-        </NuxtLink>
         <NuxtLink to="/machines" class="btn btn-ghost w-full justify-start">
           Machines
         </NuxtLink>

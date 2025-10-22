@@ -99,6 +99,7 @@ onMounted(async () => {
             <button
               class="btn btn-primary btn-sm"
               @click="updateRole(user)">
+              Apply
             </button>
           </div>
         </div>
