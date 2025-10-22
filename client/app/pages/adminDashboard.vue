@@ -3,6 +3,10 @@ import { onMounted, ref } from 'vue';
 
 const client = useSanctumClient();
 
+useHead({
+  title: 'Admin Dashboard'
+})
+
 // This middleware checks if the user is authenticated and has the 'admin' role.
 definePageMeta({
   middleware: ['sanctum:auth', 'admin']

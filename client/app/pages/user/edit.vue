@@ -4,6 +4,10 @@ const { refreshIdentity} = useSanctumAuth();
 const client = useSanctumClient();
 const config = useRuntimeConfig();
 
+useHead({
+  title: 'Edit Profile'
+})
+
 // This middleware checks if the user is authenticated. If not, it will redirect 
 // a user to the page specified in the redirect.onAuthOnly option (default is /login).
 definePageMeta({

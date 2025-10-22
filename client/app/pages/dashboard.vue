@@ -2,6 +2,10 @@
 
 const { logout } = useSanctumAuth();
 
+useHead({
+  title: 'Dashboard'
+})
+
 // This middleware checks if the user is authenticated. If not, it will redirect 
 // a user to the page specified in the redirect.onAuthOnly option (default is /login).
 definePageMeta({
