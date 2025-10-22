@@ -18,6 +18,21 @@ const users = ref<MyUser[]>([]);
 const loading = ref(false);
 const fetchError = ref<null | string>(null);
 
+async function updateRole(userToUpdate: MyUser){
+  try {
+    await client('api/admin/user/promote', {
+      method: 'PUT',
+      body: {
+        user_id: userToUpdate.id,
+        role: userToUpdate.role
+      }
+    })
+    refreshNuxtData();
+  } catch (error){
+    console.error("Error promoting user:", error);
+  }
+}
+
 onMounted(async () => {
   loading.value = true;
   fetchError.value = null;
@@ -33,8 +48,6 @@ onMounted(async () => {
       console.warn('Unexpected response shape from /api/admin/users, expected array', res);
       users.value = (res && (res as any).data && Array.isArray((res as any).data)) ? (res as any).data : [];
     }
-
-    console.log("Fetched users:", users.value.length);
   } catch (err: any) {
     console.error("Error fetching users:", err);
     fetchError.value = err?.message || String(err);
@@ -48,6 +61,7 @@ onMounted(async () => {
 <template>
   <div class="p-6">
     <h1 class="text-3xl font-bold text-center mt-10">Admin Dashboard</h1>
+
     <ul v-if="users" class="max-w-4xl mx-auto mt-6 space-y-4">
       <li
         v-for="user in users"
@@ -58,22 +72,27 @@ onMounted(async () => {
           <h2 class="card-title">User ID: {{ user.id }}</h2>
           <p><strong>Name:</strong> {{ user.name }}</p>
           <p><strong>Email:</strong> {{ user.email }}</p>
-          <p>
-            <strong>Role:</strong>
-            <span
-              class="badge ml-1"
-              :class="{
-                'badge-primary': user.role === 'admin',
-                'badge-warning': user.role === 'manager',
-                'badge-neutral': user.role === 'user',
-              }"
+
+          <!-- Role display and editor -->
+          <div class="flex items-center gap-3">
+            <p><strong>Role:</strong></p>
+
+            <select
+              v-model="user.role"
+              class="select select-bordered select-sm"
             >
-              {{ user.role }}
-            </span>
-          </p>
+              <option value="user">User</option>
+              <option value="manager">Manager</option>
+              <option value="admin">Admin</option>
+            </select>
+
+            <button
+              class="btn btn-primary btn-sm"
+              @click="updateRole(user)">
+            </button>
+          </div>
         </div>
       </li>
     </ul>
   </div>
 </template>
-

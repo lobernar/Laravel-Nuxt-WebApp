@@ -22,6 +22,8 @@ Route::delete('/user/delete', [UserController::class, 'delete'])->middleware(['a
 // Admin routes
 Route::get('admin/users', [AdminController::class, 'getAllUsers'])
         ->middleware(['auth:sanctum', 'is-admin']);
+Route::put('admin/user/promote', [AdminController::class, 'updateUserRole'])
+        ->middleware(['auth:sanctum', 'is-admin']);
 
 // Machine routes
 Route::middleware(['auth:sanctum'])->group(function () {
