@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Policies\MachinePolicy;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 
+#[UsePolicy(MachinePolicy::class)]
 class Machine extends Model
 {
 
