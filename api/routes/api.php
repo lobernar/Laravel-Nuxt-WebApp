@@ -16,6 +16,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // User management routes
+Route::get('/user', [UserController::class, 'getUser'])->middleware(['auth:sanctum']);
 Route::put('/user/update', [UserController::class, 'update'])->middleware(['auth:sanctum']);
 Route::delete('/user/delete', [UserController::class, 'delete'])->middleware(['auth:sanctum']);
 
