@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function getUser(Request $request){
-        ;
+        return response()->json(Auth::user(), 200);
     }
 
     public function update(Request $request) {
