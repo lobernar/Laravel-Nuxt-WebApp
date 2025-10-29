@@ -11,7 +11,8 @@ The goal is to **demonstrate my ability to design and implement complex, distrib
 During this project, I am learning and applying:
 
 - **Laravel** – PHP back-end framework for API development, database management, and authentication.  
-- **Laravel Sanctum** – Provides lightweight API authentication for secure communication between frontend and backend.  
+- **Laravel Sanctum** – Provides lightweight API authentication for secure communication between frontend and backend.
+- **Laravel Sail** – A Docker-based local development environment for Laravel, providing an easy way to run PHP, PostgreSQL, and other services in containers.  
 - **Nuxt** – Front-end framework for building interactive, component-based dashboards (Vue.js based, **not Angular**).  
 - **Tailwind CSS / daisyUI** – Tailwind CSS for utility-first styling, with daisyUI providing ready-to-use UI components.
 - **C# Microservices** – Lightweight services handling background tasks and real-time data streaming.  
@@ -36,10 +37,36 @@ During this project, I am learning and applying:
 ```bash
 cd api/
 composer install
-php artisan migrate
-php artisan serve
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan migrate
+./vendor/bin/sail artisan serve
 ```
 The API will run at: http://localhost:8000
+
+#### Note
+You may see an error like:
+```bash
+Error response from daemon: failed to bind host port for 0.0.0.0:80: address already in use
+```
+This means another web server (like Apache or Nginx) is already using port 80 (or 8000) on your machine. 
+To solve this, shut them down with:
+
+```bash
+sudo systemctl stop apache2
+# or
+sudo systemctl stop nginx
+```
+
+Then restart Docker:
+```bash
+sudo systemctl restart docker
+```
+
+And rebuild the app with sail:
+```bash
+./vendor/bin/sail down -v
+./vendor/bin/sail up -d
+```
 
 ### 2. Frontend Setup (Nuxt Client)
 ```bash
