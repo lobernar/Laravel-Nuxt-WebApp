@@ -37,7 +37,7 @@ class UserControllerTest extends TestCase
         $user = User::factory()->create();
 
         // Send api request
-        $response = $this->actingAs($user)->getJson('api/user');
+        $response = $this->actingAs($user)->getJson('/api/user');
 
         // Assert api response
         $response->assertStatus(200)
@@ -65,7 +65,7 @@ class UserControllerTest extends TestCase
         ];
 
         // Send api request
-        $response = $this->actingAs($user)->putJson('api/user/update', $payload);
+        $response = $this->actingAs($user)->putJson('/api/user/update', $payload);
         
         // Compare values to ensure everything worked as expected
         $response->assertStatus(200)
@@ -88,6 +88,5 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson(['message' => 'User deleted successfully']);
         $this->assertDatabaseMissing('users', ['id' => $user->id]);
-
     }
 }

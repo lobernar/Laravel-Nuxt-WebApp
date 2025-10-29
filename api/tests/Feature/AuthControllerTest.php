@@ -66,7 +66,7 @@ class AuthControllerTest extends TestCase
         ];
 
         // Send api request
-        $response = $this->postJson('api/register', $payload);
+        $response = $this->postJson('/api/register', $payload);
 
         // Assert response
         $response->assertStatus(200)
