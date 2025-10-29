@@ -81,6 +81,12 @@ Once both backend and frontend are running, open your browser and visit: http://
 
 ---
 
+## Runing API tests
+To run the API tests with sail, use the follwing command:
+```bash
+./vendor/bin/sail artisan test --env=testing
+``` 
+
 ## Authentication Flow
 
 1. Users register or log in via the Nuxt frontend.
