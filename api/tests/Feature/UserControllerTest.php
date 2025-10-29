@@ -30,7 +30,7 @@ class UserControllerTest extends TestCase
         // Assert that it's an instance of the correct class
         $this->assertInstanceOf(\App\Models\User::class, $user);
 
-        // Optionally assert attributes
+        // Assert attributes
         $this->assertNotNull($user->name);
         $this->assertNotNull($user->email);
     }
