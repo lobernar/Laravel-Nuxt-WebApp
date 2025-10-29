@@ -27,6 +27,6 @@ class AdminController extends Controller
 
         return response()->json([
             'message' =>" User {$userToUpdate->name} promoted to {$data['role']}",
-        ]);
+        ], 200);
     }
 }
