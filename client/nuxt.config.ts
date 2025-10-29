@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: 'http://localhost:8000', // Laravel API
+      apiBase: 'http://localhost', // Laravel API
     },
   },
 
@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
   modules: ["nuxt-auth-sanctum", "nuxt-permissions"],
   sanctum: {
-    baseUrl: 'http://localhost:8000', // Laravel API
+    baseUrl: 'http://localhost', // Laravel API
     endpoints: {
       login: '/api/login',
       logout: '/api/logout',
