@@ -6,10 +6,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
