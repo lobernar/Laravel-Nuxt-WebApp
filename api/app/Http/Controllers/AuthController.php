@@ -22,7 +22,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        $request->session()->regenerate();
+        // $request->session()->regenerate();
 
         return response()->json([
             'message' => 'Login successful',
@@ -31,8 +31,8 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // $request->session()->invalidate();
+        // $request->session()->regenerateToken();
         return response()->json(['message' => 'Logout successful'], 200);
     }
 
