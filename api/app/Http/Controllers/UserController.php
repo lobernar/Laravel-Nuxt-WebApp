@@ -38,7 +38,9 @@ class UserController extends Controller
 
     public function delete(Request $request) {
         $user = Auth::user();
-        // Auth::logout();
+        if (!app()->environment('testing')) {
+            Auth::logout();
+        }
         $user->delete();
         // $request->session()->invalidate();
         // $request->session()->regenerateToken();
